@@ -12,15 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/index', function () {
-    return view('frontend.index');
+    return view('backend.index');
 });
 
 Route::get('/contact', function () {
-    return view('frontend.contact');
+    return view('backend.contact');
+});
+Route::get('/sign-in', function () {
+    return view('backend.sign-in');
+});
+Route::get('/sign-up', function () {
+    return view('backend.sign-up');
 });
 Auth::routes();
 

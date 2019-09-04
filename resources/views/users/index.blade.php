@@ -1,43 +1,23 @@
-@extends('layouts.app')
+@extends('backend.index')
 ​
 @section('title')
     <title>Manajemen User</title>
 @endsection
-​
 @section('content')
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Manajemen User</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('users.create') }}">tambah data</a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-​
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        {{-- @card --}}
-                            @slot('title')
-                            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Tambah Baru</a>
-                            @endslot
-
-                            @if (session('success'))
-                                @alert(['type' => 'success'])
-                                    {!! session('success') !!}
-                                @endalert
-                            @endif
-
-                            <div class="table-responsive">
-                                <table class="table table-hover">
+                <div class="card mb10">
+                        <h3 class="m-0 text-dark">Manajemen User</h3>
+                         <div class="container-fluid">
+                             <div class="card">
+                                <div class="col-md10">
+                                    <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Tambah Baru</a>
+                                    @if (session('success'))
+                                        {!! session('success') !!}
+                                    @endif
+                                <div class="card-body">
+                                    <table id="bs4-table" class="table table-striped table-bordered" style="width:100%"x>
                                     <thead>
                                         <tr>
                                             <td>no</td>
@@ -84,14 +64,12 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                            </div>
-                            @slot('footer')
-​
-                            @endslot
-                        {{-- @endcard --}}
+                             </div>
+                         </div>
                     </div>
+                 </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+      </div>
 @endsection

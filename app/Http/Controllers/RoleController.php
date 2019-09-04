@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use Spatie\Permission\Models\Role;
+
 class RoleController extends Controller
 {
     /**

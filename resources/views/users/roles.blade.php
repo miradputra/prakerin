@@ -67,14 +67,11 @@
                                     </thead>
                                 </table>
                             </div>
-                            @slot('footer')
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary btn-sm float-right">
                                         Set Role
                                     </button>
                                 </div>
-                            @endslot
-                        {{-- @endcard --}}
                         </form>
                     </div>
                 </div>

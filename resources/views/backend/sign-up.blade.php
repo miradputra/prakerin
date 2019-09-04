@@ -6,22 +6,23 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title>Login</title>
+<title>:: sQuare ::</title>
 <!-- Favicon-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="{{ asset('backend/template/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('backend/template/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 
 <!-- Custom Css -->
-<link rel="stylesheet" href="{{ asset('backend/template/assets/css/main.css')}}">
-<link rel="stylesheet" href="{{ asset('backend/template/assets/css/color_skins.css')}}">
+<link rel="stylesheet" href="{{asset('backend/template/assets/css/main.css')}}">
+<link rel="stylesheet" href="{{asset('backend/template/assets/css/color_skins.css')}}">
 </head>
+
 <body class="theme-cyan">
 <div class="authentication sidebar-collapse">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
         <div class="container">
             <div class="navbar-translate n_logo">
-                <a class="navbar-brand" href="{{ route('home') }}">sQuare</a>
+                <a class="navbar-brand" href="javascript:void(0);" title="" target="_blank">sQuare</a>
                 <button class="navbar-toggler" type="button">
                     <span class="navbar-toggler-bar bar1"></span>
                     <span class="navbar-toggler-bar bar2"></span>
@@ -30,6 +31,8 @@
             </div>
             <div class="navbar-collapse">
                 <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Search Result</a></li>
                     <li class="nav-item">
                         <a class="nav-link" title="Follow us on Twitter" href="javascript:void(0);" target="_blank">
                             <i class="zmdi zmdi-twitter"></i>
@@ -48,13 +51,7 @@
                             <span class="d-lg-none d-xl-none m-l-10">Instagram</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-white btn-round" href="{{ route('register') }}">SIGN UP</a>
-                            </li>
-                        @endif
-                    </li>
+                    <li class="nav-item"><a class="nav-link btn btn-white btn-round" href="sign-in">SIGN IN</a></li>
                 </ul>
             </div>
         </div>
@@ -64,48 +61,36 @@
         <div class="container">
             <div class="col-md-12 content-center">
                 <div class="card-plain">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+                    <form class="form">
                         <div class="header">
                             <div class="logo-container expandUp">
-                                <img src="{{ asset('backend/template/assets/images/logo.svg')}}" alt="">
+                                <img src="{{asset('backend/template/assets/images/logo.svg')}}" alt="">
                             </div>
-                            <h5>Log in</h5>
+                            <h5>Sign Up</h5>
+                            <span>Register a new membership</span>
                         </div>
                         <div class="content">
                             <div class="input-group">
-                                <input id="email" type="email" placeholder="Enter Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                    <span class="input-group-addon">
-                                        <i class="zmdi zmdi-account-circle"></i>
-                                    </span>
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <input type="text" class="form-control" placeholder="Enter User Name">
+                                <span class="input-group-addon"><i class="zmdi zmdi-account-circle"></i></span>
                             </div>
-
                             <div class="input-group">
-                                <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                    <span class="input-group-addon">
-                                        <i class="zmdi zmdi-lock"></i>
-                                    </span>
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <input type="text" class="form-control" placeholder="Enter Email">
+                                <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" placeholder="Password" class="form-control" />
+                                <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
                             </div>
                         </div>
+                        <div class="checkbox">
+                                <input id="terms" type="checkbox">
+                                <label for="terms">
+                                        I read and agree to the <a href="javascript:void(0);">terms of usage</a>
+                                </label>
+                            </div>
                         <div class="footer">
-                            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">
-                                SIGN IN
-                            </button>
-                            @if (Route::has('password.request'))
-                                <a class="link" href="{{ route('password.request') }}">
-                                    Forgot Password?
-                                </a>
-                            @endif
+                            <a href="index" class="btn btn-primary btn-round btn-lg btn-block waves-effect waves-light">SIGN UP</a>
                         </div>
                     </form>
                 </div>
@@ -132,8 +117,8 @@
     </div>
 </div>
 <!-- Jquery Core Js -->
-<script src="{{ asset('backend/template/assets/bundles/libscripts.bundle.js')}}"></script>
-<script src="{{ asset('backend/template/assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
-<script src="{{ asset('backend/template/assets/js/pages/authentication/page.js')}}"></script>
+<script src="{{asset('backend/template/assets/bundles/libscripts.bundle.js')}}"></script>
+<script src="{{asset('backend/template/assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{{asset('backend/template/assets/js/pages/authentication/page.js')}}"></script>
 </body>
 </html>
