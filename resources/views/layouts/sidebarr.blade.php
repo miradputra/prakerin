@@ -38,7 +38,7 @@
                     <ul class="ml-menu">
                         <li><a href="users">Users</a></li>
                         <li><a href="role">Role</a></li>
-                        {{-- <li><a href="sidebar-sm.html">Small leftmenu</a></li> --}}
+                        <li><a href="users/role-permission">Role Permission</a></li>
                     </ul>
                 </li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>

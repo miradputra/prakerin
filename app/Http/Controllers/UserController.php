@@ -183,4 +183,15 @@ public function setRole(Request $request, $id)
     $user->syncRoles($request->role);
     return redirect()->back()->with(['success' => 'Role Sudah Di Set']);
 }
+public function userOnlineStatus()
+{
+    $users = DB::table('users')->get();
+
+    foreach ($users as $user) {
+        if (Cache::has('user-is-online-' . $user->id))
+            echo "User " . $user->name . " is online.";
+        else
+            echo "User " . $user->name . " is offline.";
+    }
+}
 }

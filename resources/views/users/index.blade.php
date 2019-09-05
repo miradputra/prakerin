@@ -14,8 +14,10 @@
                                 <div class="col-md10">
                                     <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Tambah Baru</a>
                                     @if (session('success'))
+                                    <div class="btn btn-info btn-sm">
                                         {!! session('success') !!}
-                                    @endif
+                                    </div>
+                                @endif
                                 <div class="card-body">
                                     <table id="bs4-table" class="table table-striped table-bordered" style="width:100%"x>
                                     <thead>
@@ -41,17 +43,17 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                @if ($row->status)
-                                                <label class="badge badge-success">Aktif</label>
+                                                @if(Cache::has('user-is-online-' . $row->id))
+                                                    <span class="text-success">Online</span>
                                                 @else
-                                                <label for="" class="badge badge-default">Suspend</label>
+                                                    <span class="text-secondary">Offline</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 <form action="{{ route('users.destroy', $row->id) }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="_method" value="DELETE">
-                                                    <a href="{{ route('users.roles', $row->id) }}" class="btn btn-info btn-sm">show<i class="fa fa-user-secret"></i></a>
+                                                    <a href="{{ route('users.roles', $row->id) }}" class="btn btn-info btn-sm">set role<i class="fa fa-user-secret"></i></a>
                                                     <a href="{{ route('users.edit', $row->id) }}" class="btn btn-warning btn-sm">edit<i class="fa fa-edit"></i></a>
                                                     <button class="btn btn-danger btn-sm">delete</button>
                                                 </form>

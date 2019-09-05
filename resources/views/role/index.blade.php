@@ -43,9 +43,11 @@
                         </div>
 
                     <div class="col-md-10">
-                            @if (session('success'))
+                        @if (session('success'))
+                        <div class="btn btn-info btn-sm">
                             {!! session('success') !!}
-                            @endif
+                        </div>
+                    @endif
                             <br>
                             <br>
                            <b> List Role</b>
