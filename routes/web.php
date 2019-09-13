@@ -29,7 +29,6 @@ Route::get('/sign-up', function () {
     return view('backend.sign-up');
 });
 // Auth::routes();
-
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::resource('/role', 'RoleController')->except([
@@ -68,6 +67,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/users/permission', 'UserController@addPermission')->name('users.add_permission');
         Route::get('/users/role-permission', 'UserController@rolePermission')->name('users.roles_permission');
         Route::put('/users/permission/{role}', 'UserController@setRolePermission')->name('users.setRolePermission');
+        Route::resource('/category', 'CategoryController');
+        Route::resource('/item', 'ItemController');
+        Route::resource('/promo', 'PromoController');
     });
 
 
@@ -88,4 +90,4 @@ Route::group(['middleware' => 'auth'], function() {
     //home kita taruh diluar group karena semua jenis user yg login bisa mengaksesnya
     Route::get('/home', 'HomeController@index')->name('home');
     });
-    Route::get('/check', 'UserController@userOnlineStatus');
+

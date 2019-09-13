@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{{asset('backend/template/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('backend/template/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('backend/template/assets/plugins/morrisjs/morris.min.css')}}" />
+@yield('css')
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{asset('backend/template/assets/css/main.css')}}">
 <link rel="stylesheet" href="{{asset('backend/template/assets/css/color_skins.css')}}">
@@ -171,7 +172,7 @@
 <!-- Main Content -->
 <section class="content home">
     <br>
-        @yield('content')
+    @yield('content')
 </section>
 <!-- Jquery Core Js -->
 <script src="{{asset('backend/template/assets/bundles/libscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
@@ -183,5 +184,6 @@
 
 <script src="{{asset('backend/template/assets/bundles/mainscripts.bundle.js')}}"></script>
 <script src="{{asset('backend/template/assets/js/pages/index.js')}}"></script>
+@yield('js')
 </body>
 </html>

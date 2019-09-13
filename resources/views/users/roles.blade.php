@@ -33,13 +33,11 @@
                         {{-- @card --}}
                             @slot('title')
                             @endslot
-
                             @if (session('success'))
-                                @alert(['type' => 'success'])
-                                    {{ session('success') }}
-                                @endalert
+                                <div class="btn btn-info btn-sm">
+                                    {!! session('success') !!}
+                                </div>
                             @endif
-
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered">
                                     <thead>

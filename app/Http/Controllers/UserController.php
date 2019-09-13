@@ -102,6 +102,7 @@ class UserController extends Controller
             'name' => $request->name,
             'password' => $password
         ]);
+
         return redirect(route('users.index'))->with(['success' => 'User: <strong>' . $user->name . '</strong> Diperbaharui']);
     }
 

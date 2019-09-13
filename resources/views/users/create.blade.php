@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backend.index')
 ​
 @section('title')
     <title>Add New Users</title>
@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Add New Users</h1>
+                        <h1>Add New Users</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -22,22 +22,16 @@
                 </div>
             </div>
         </div>
-​
-        <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        {{-- @card --}}
+                    <div class="card">
                             @slot('title')
-
                             @endslot
-
                             @if (session('error'))
                                 @alert(['type' => 'danger'])
                                     {!! session('error') !!}
                                 @endalert
                             @endif
-
                             <form action="{{ route('users.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
@@ -72,12 +66,9 @@
                                 </div>
                             </form>
                             @slot('footer')
-​
                             @endslot
-                        {{-- @endcard --}}
                     </div>
                 </div>
             </div>
-        </section>
     </div>
 @endsection
