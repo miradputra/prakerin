@@ -153,10 +153,10 @@ class ItemController extends Controller
             $item->proposal = $filename;
         }
         $item->enable_quantity = $request->enable_quantity;
-        if ($item->enable_quantity == '1') {
+        if ($item->enable_quantity == '0') {
             $item->type_quantity = "not registered";
         }
-        elseif ($item->enable_quantity == '2') {
+        elseif ($item->enable_quantity == '1') {
             $item->type_quantity = $request->type_quantity;
         }
         $item->save();

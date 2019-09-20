@@ -228,12 +228,17 @@
                                         @endif
                                     </div>
                                     <label>Media</label>
+                                    <div>
+                                        <img src="{{ asset('/backend/template/assest/images/promo/'. $promo->media . '') }}"
+                                        style="width:115px; height:80px;" alt="foto">
+                                    </div>
+                                    <br>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input {{ $errors->has('media') ? ' is-invalid' : '' }}" name="media" id="validatedCustomFile" required>
+                                            <input type="file" class="custom-file-input {{ $errors->has('media') ? ' is-invalid' : '' }}" name="media" value="{{ $promo->media }}" id="validatedCustomFile" required>
                                             <label class="custom-file-label" for="validatedCustomFile">{{ $promo->media }}</label>
                                             {{-- Error Notification --}}
                                             @if ($errors->has('media'))

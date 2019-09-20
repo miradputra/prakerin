@@ -3,10 +3,20 @@
             <ul class="list">
                 <li>
                     <div class="user-info">
-                        <div class="image"><a href="profile.html"><img src="{{asset('backend/template/assets/images/profile_av.jpg')}}" alt="User"></a></div>
+                        <div class = user-info m-b-20>
+                            @php
+                            if (Auth::user()->avatar && file_exists(public_path(). '/backend/template/assets/images/user/'. Auth::user()->avatar )){
+                                $img = asset('/backend/template/assets/images/user/' . Auth::user()->avatar);
+                            }
+                            else{
+                                $img = asset('/backend/template/assets/images/user/admin.jpeg' );
+                            }
+                            @endphp
+                        </div>
+                    <div class="image" ><img src="{{ $img }}" alt=""></div>
                         <div class="detail">
-                            <h4>Michael</h4>
-                            <p class="m-b-0">Manager</p>
+                        <h4>{{Auth::user()->name}}</h4>
+                            <p class="m-b-0"></p>
                             <a href="events.html" title="Events"><i class="zmdi zmdi-calendar"></i></a>
                             <a href="mail-inbox.html" title="Inbox"><i class="zmdi zmdi-email"></i></a>
                             <a href="contact.html" title="Contact List"><i class="zmdi zmdi-account-box-phone"></i></a>
@@ -27,18 +37,14 @@
                         </div>
                     </div>
                 </li>
-                <li class="header">MAIN</li>
-                <li class="active open"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a>
-                    <ul class="ml-menu">
-                        <li class="active"><a href="index">Dashboard 1</a></li>
-                        <li><a href="index3.html">Dashboard 2</a></li>
-                    </ul>
-                </li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-gamepad"></i><span>Layouts Format</span></a>
                     <ul class="ml-menu">
                         <li><a href="users">Users</a></li>
                         <li><a href="role">Role</a></li>
                         <li><a href="users/role-permission">Role Permission</a></li>
+                        <li><a href="category">Category</a></li>
+                        <li><a href="item">Item</a></li>
+                        <li><a href="promo">Promo</a></li>
                     </ul>
                 </li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>
@@ -138,7 +144,7 @@
                     <ul class="ml-menu">
                         <li><a href="blank.html">Blank Page</a> </li>
                         <li><a href="image-gallery.html">Image Gallery</a> </li>
-                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="profile">Profile</a></li>
                         <li><a href="timeline.html">Timeline</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
                         <li><a href="invoices.html">Invoices</a></li>

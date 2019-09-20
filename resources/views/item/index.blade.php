@@ -36,60 +36,60 @@
                             <li class="breadcrumb-item active">Item Data</li>
                         </ol>
                     </div>
-
-            <div class="col-md-12">
-                <div class="card" style="padding:10px">
+                    <div class="col-md-12">
+                        <div class="card" style="padding:10px">
                         <div class="card-header">Info Data</div>
-                        <a href="{{ route('item.create') }}" class="btn btn-primary btn-round btn-md float-right">Create Data</a>
-                        <br><br>
+                            <a href="{{ route('item.create') }}" class="btn btn-primary btn-round btn-md float-right">Create Data</a>
+                            <br><br>
                             <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                    <thead>
-                                        <tr>
-                                            <td>no</td>
-                                            <td>Item</td>
-                                            <td>Category</td>
-                                            <td>Description</td>
-                                            <td>Rate</td>
-                                            <td>Media Sample</td>
-                                            <td>Proposal Page</td>
-                                            <td>Type Quantity</td>
-                                            <td>Action</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php $no = 1; @endphp
-                                        @foreach ($item as $row)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $row->name }}</td>
-                                            <td>
-                                                @foreach ($row->category as $cat)
-                                                    <label class="badge badge-info">{{ $cat->name }}</label>
-                                                @endforeach
-                                            </td>
-                                            <td>{!! str_limit($row->description, 40) !!}</td>
-                                            <td>{{ $row->rate }}</td>
-                                            <td><img src="{{ asset('backend/template/assets/images/item/' . $row->media_sample . '') }}"
-                                                style="width:115px; height:80px;" alt="foto">
-                                            </td>
-                                            <td><img src="{{ asset('backend/template/assets/images/item/' . $row->proposal . '') }}"
-                                                style="width:115px; height:80px;" alt="foto">
-                                            </td>
-                                            <td>{{ $row->type_quantity }}</td>
-                                            <td>
-                                                <form action="{{ route('item.destroy', $row->id) }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <a href="{{ route('item.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                        <thead>
+                                            <tr>
+                                                <td>no</td>
+                                                <td>Item</td>
+                                                <td>Category</td>
+                                                <td>Description</td>
+                                                <td>Rate</td>
+                                                <td>Media Sample</td>
+                                                <td>Proposal Page</td>
+                                                <td>Type Quantity</td>
+                                                <td>Action</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $no = 1; @endphp
+                                            @foreach ($item as $row)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $row->name }}</td>
+                                                <td>
+                                                    @foreach ($row->category as $cat)
+                                                        <label class="badge badge-info">{{ $cat->name }}</label>
+                                                    @endforeach
+                                                </td>
+                                                <td>{!! str_limit($row->description, 40) !!}</td>
+                                                <td>{{ $row->rate }}</td>
+                                                <td><img src="{{ asset('backend/template/assets/images/item/' . $row->media_sample . '') }}"
+                                                    style="width:115px; height:80px;" alt="foto">
+                                                </td>
+                                                <td><img src="{{ asset('backend/template/assets/images/item/' . $row->proposal . '') }}"
+                                                    style="width:115px; height:80px;" alt="foto">
+                                                </td>
+                                                <td>{{ $row->type_quantity }}</td>
+                                                <td>
+                                                    <form action="{{ route('item.destroy', $row->id) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <a href="{{ route('item.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -97,6 +97,5 @@
             </div>
         </div>
     </div>
-  </div>
 </div>
 @endsection

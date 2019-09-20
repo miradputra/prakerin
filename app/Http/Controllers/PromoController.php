@@ -59,7 +59,7 @@ class PromoController extends Controller
         //Media
         if ($request->hasFile('media')){
             $file = $request->file('media');
-            $path = public_path() . 'backend/template/assets/images/promo/';
+            $path = public_path() . '/backend/template/assets/images/promo/';
             $filename = str_random(6) . '_' . $file->getClientOriginalName();
             $upload = $file->move($path, $filename);
             $promo->media = $filename;
@@ -180,13 +180,13 @@ class PromoController extends Controller
         //Media
         if ($request->hasFile('media')){
             $file = $request->file('media');
-            $path = public_path() . 'backend/template/assets/images/promo/';
+            $path = public_path() . '/backend/template/assets/images/promo/';
             $filename = str_random(6) . '_' . $file->getClientOriginalName();
             $uploadSuccsess = $file->move($path, $filename);
             //hapus Media lama
             if ($promo->media){
                 $old_foto = $promo->media;
-                $filepath = public_path() . 'backend/template/assets/images/promo/' . $promo->media;
+                $filepath = public_path() . '/backend/template/assets/images/promo/'  . $promo->media;
                 try {
                     File::delete($filepath);
                 }
@@ -251,7 +251,7 @@ class PromoController extends Controller
         //Hapus Media file
         if ($promo->media){
             $old_foto = $promo->media;
-            $filepath = public_path() . 'backend/template/assets/images/promo/' . $promo->media;
+            $filepath = public_path() . '/backend/template/assets/images/promo/' . $promo->media;
             try {
                 File::delete($filepath);
             }

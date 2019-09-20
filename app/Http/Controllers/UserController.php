@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use App\User;
 use Spatie\Permission\Models\Permission;
 use DB;
+use File;
 
 class UserController extends Controller
 {
@@ -94,15 +95,39 @@ class UserController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'required|email|exists:users,email',
             'password' => 'nullable|min:6',
-        ]);
 
+        ]);
+        // $user = User::all();
+        // dd($user);
         $user = User::findOrFail($id);
-        $password = !empty($request->password) ? bcrypt($request->password):$user->password;
-        $user->update([
-            'name' => $request->name,
-            'password' => $password
-        ]);
-
+        $user->email = $request->email;
+        $user->name = $request->name;
+        if($request->password == null){
+            $user->password = $user->password;
+        }
+        else{
+            $user->password = bcrypt($request->password);
+        }
+         //avatar
+         if ($request->hasFile('avatar')){
+            $file = $request->file('avatar');
+            $path = public_path() . '/backend/template/assets/images/user/';
+            $filename = str_random(6) . '_' . $file->getClientOriginalName();
+            $uploadSuccsess = $file->move($path, $filename);
+            //hapus Media_Sample lama
+            if ($user->avatar){
+                $old_foto = $user->avatar;
+                $filepath = public_path() . '/backend/template/assets/images/user/' . $user->avatar;
+                try {
+                    File::delete($filepath);
+                }
+                catch (FileNotFoundException $e){
+                    //File sudah dihapus atau tidak ada
+                }
+            }
+            $user->avatar = $filename;
+        }
+             $user->save();
         return redirect(route('users.index'))->with(['success' => 'User: <strong>' . $user->name . '</strong> Diperbaharui']);
     }
 
@@ -118,6 +143,7 @@ class UserController extends Controller
         $user->delete();
         return redirect()->back()->with(['success' => 'User: <strong>' . $user->name . '</strong> Dihapus']);
     }
+
     public function rolePermission(Request $request)
 {
     $role = $request->get('role');

@@ -46,16 +46,16 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h2 class="m-0 text-dark">add New Item</h2>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('item.index') }}">Item data</a></li>
-                                <li class="breadcrumb-item active">add New Item</li>
-                            </ol>
-                        </div>
+                    <div class="col-sm-6">
+                        <h2 class="m-0 text-dark">add New Item</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('item.index') }}">Item data</a></li>
+                            <li class="breadcrumb-item active">add New Item</li>
+                        </ol>
+                    </div>
                     <div class="col-md-11">
                         <div class="card">
                             <div class="card-body">
@@ -63,7 +63,6 @@
                                 <br><br>
                             <form action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-
                                 <div class="form-group">
                                     <label for="">Item Name</label>
                                     <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" required>
@@ -99,7 +98,6 @@
                                         </span>
                                     @endif
                                 </div>
-
                                 <br>
                                 <label for="">Rate</label>
                                 <div class="input-group">
@@ -114,7 +112,6 @@
                                         </span>
                                     @endif
                                 </div>
-
                                 <br>
                                 <label>Media Sample</label>
                                 <div class="input-group">
@@ -132,7 +129,6 @@
                                         @endif
                                     </div>
                                 </div>
-
                                 <br>
                                 <label>Proposal Page</label>
                                 <div class="input-group">
@@ -150,7 +146,6 @@
                                         @endif
                                     </div>
                                 </div>
-
                                 <br>
                                 <div class="form-group">
                                     <label for="">Enable Quantity</label>
@@ -181,7 +176,7 @@
                     </div>
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </div>
 @endsection

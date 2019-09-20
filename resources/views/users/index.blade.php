@@ -26,6 +26,7 @@
                                             <td>Nama</td>
                                             <td>Email</td>
                                             <td>Role</td>
+                                            <td>Photo</td>
                                             <td>Status</td>
                                             <td>Aksi</td>
                                         </tr>
@@ -35,12 +36,15 @@
                                         @forelse ($users as $row)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $row->name }}</td>
+                                        <td>{{ $row->name }}</td>
                                             <td>{{ $row->email }}</td>
                                             <td>
                                                 @foreach ($row->getRoleNames() as $role)
                                                 <label for="" class="badge badge-info">{{ $role }}</label>
                                                 @endforeach
+                                            </td>
+                                            <td><img src="{{ asset('/backend/template/assets/images/user/' . $row->avatar) }}"
+                                                style="width:115px; height:80px;" alt="user">
                                             </td>
                                             <td>
                                                 @if(Cache::has('user-is-online-' . $row->id))

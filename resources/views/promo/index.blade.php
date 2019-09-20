@@ -73,7 +73,7 @@
                                                 <td>{{ $data->campaign_duration_end }}</td>
                                                 <td>{{ $data->priority }}</td>
                                                 <td>{!! str_limit($data->promo_description, 50) !!}</td>
-                                                <td><img src="{{ asset('backend/template/assets/images/promo/' . $data->media . '') }}"
+                                                <td><img src="{{ asset('/backend/template/assets/images/promo/'. $data->media . '') }}"
                                                     style="width:115px; height:80px;" alt="foto">
                                                 </td>
                                                 <td>{{ $data->gross_total }}</td>

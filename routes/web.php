@@ -28,6 +28,9 @@ Route::get('/sign-in', function () {
 Route::get('/sign-up', function () {
     return view('backend.sign-up');
 });
+Route::get('/profile', function () {
+    return view('backend.profile');
+});
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
