@@ -86,6 +86,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required|min:50',
+            'baner' => 'required|mimes:jpeg,jpg,png,gif|required|max:2048'
         ]);
         $category = CategoryPackage::findOrFail($id);
         $category->name = $request->name;
@@ -100,12 +101,7 @@ class CategoryController extends Controller
             if ($category->baner){
                 $old_banner = $category->baner;
                 $filepath = public_path() . '/backend/template/assets/images/category/' . $category->baner;
-                try {
                     File::delete($filepath);
-                }
-                catch (FileNotFoundException $e){
-                    //File sudah dihapus atau tidak ada
-                }
             }
             $category->baner = $filename;
         }
@@ -124,12 +120,7 @@ class CategoryController extends Controller
         if ($category->baner){
             $old_banner = $category->baner;
             $filepath = public_path() . '/backend/template/assets/images/category/' . $category->baner;
-            try {
                 File::delete($filepath);
-            }
-            catch (FileNotFoundException $e){
-                //File sudah dihapus/tidak ada
-            }
         }
         $category->delete();
 

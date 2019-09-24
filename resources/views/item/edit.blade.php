@@ -25,6 +25,15 @@
             $('.div-type_quantity').show();
         }
     })
+        //SUBMIT BUTTON DISABLE IF INPUTING
+        var enableSubmit = function(ele) {
+    $(ele).removeAttr("disabled");
+    }
+
+    $('form').submit(function(){
+        $('.saveBtn').attr('disabled', true);
+    });
+
 </script>
 @endsection
 @section('css')
@@ -60,7 +69,7 @@
                                     <input type="hidden" value="PATCH" name="_method">
                                     {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="">Item Name</label>
+                                   <h6>Name</h6>
                                     <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" value="{{ $item->name }}" required>
                                     {{-- Error Notification --}}
                                     @if ($errors->has('name'))
@@ -70,7 +79,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Category</label>
+                                    <h6>Category</h6>
                                     <select id="category" name="category[]" class="form-control {{ $errors->has('category') ? ' is-invalid' : '' }}"  multiple="multiple">
                                         @foreach ($item->category as $data)
                                             <option value="{{ $data->id }}">{{ $data->name }}</option>
@@ -85,7 +94,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label for="">Description</label>
+                                    <h6>Description</h6>
                                     <textarea class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="editor1" required>{{ $item->description }}</textarea>
                                     {{-- Error Notification --}}
                                     @if ($errors->has('description'))
@@ -96,7 +105,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label for="">Rate</label>
+                                    <h6>Rate</h6>
                                     <input class="form-control {{ $errors->has('rate') ? ' is-invalid' : '' }}" type="text" name="rate" value="{{ $item->rate }}" required>
                                     {{-- Error Notification --}}
                                     @if ($errors->has('rate'))
@@ -106,46 +115,62 @@
                                     @endif
                                 </div>
                                 <br>
-                                <label>Media Sample</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                <h6>Media Sample</h6>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input {{ $errors->has('media_sample') ? ' is-invalid' : '' }}" name="media_sample" id="validatedCustomFile" value="{{ $item->media_sample }}">
+                                            <label class="custom-file-label" for="validatedCustomFile">{{ $item->media_sample }}</label>
+                                        </div>
                                     </div>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input {{ $errors->has('media_sample') ? ' is-invalid' : '' }}" name="media_sample" id="validatedCustomFile">
-                                        <label class="custom-file-label" for="validatedCustomFile">{{ $item->media_sample }}</label>
-                                        {{-- Error Notification --}}
-                                        @if ($errors->has('media_sample'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('media_sample') }}</strong>
-                                            </span>
-                                        @endif
+                                    <span>Please upload a valid image file. Size of image should not be more than 2MB.</span>
+                                    {{-- Error Notification --}}
+                                    @if ($errors->has('media_sample'))
+                                    <div class="alert alert-danger">
+                                        <strong>Whoops!</strong> There were some problems with your input.
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }} Max Size Upload is 2048px.</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
+                                    @endif
                                 </div>
                                 <br>
-                                <label>Proposal Page</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                <h6>Proposal Page</h6>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input {{ $errors->has('proposal') ? ' is-invalid' : '' }}" name="proposal" id="validatedCustomFile" value="{{ $item->proposal }}">
+                                            <label class="custom-file-label" for="validatedCustomFile">{{ $item->proposal }}</label>
+                                        </div>
                                     </div>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input {{ $errors->has('proposal') ? ' is-invalid' : '' }}" name="proposal" id="validatedCustomFile">
-                                        <label class="custom-file-label" for="validatedCustomFile">{{ $item->proposal }}</label>
-                                        {{-- Error Notification --}}
-                                        @if ($errors->has('proposal'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('proposal') }}</strong>
-                                            </span>
-                                        @endif
+                                    <span>Please upload a valid image file. Size of image should not be more than 2MB.</span>
+                                    {{-- Error Notification --}}
+                                    @if ($errors->has('proposal'))
+                                    <div class="alert alert-danger">
+                                        <strong>Whoops!</strong> There were some problems with your input.
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }} Max Size Upload is 2048px.</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
+                                    @endif
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label for="">Enable Quantity</label>
+                                    <h6>Enable Quantity</h6>
                                     <div>
                                         <label>
                                             <input type="radio" name="enable_quantity" value="1">True</label>
-                                            <input type="radio" name="enable_quantity" value="0">False</label>
+                                            <input type="radio" name="enable_quantity" value="0">False</abel>
                                         <label>
                                     </div>
                                     {{-- Error Notification --}}
@@ -156,7 +181,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group div-type_quantity" style="display:none;">
-                                    <label for="">Type Quantity </label>
+                                    <h6>Type Quantity</h6>
                                     <input class="form-control {{ $errors->has('type_quantity') ? ' is-invalid' : '' }}" type="text" name="type_quantity" value="{{ $item->enable_quantity }}" required>
 
                                 </div>

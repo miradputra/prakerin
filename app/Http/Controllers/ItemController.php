@@ -42,8 +42,9 @@ class ItemController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required|min:40',
-            'media_sample' => 'required|mimes:jpeg,jpg,png,gif,mkv,mp4|required|max:2048'
+            'description' => 'required|min:50',
+            'media_sample' => 'required|mimes:jpeg,jpg,png,gif,mkv,mp4|required|max:2048',
+            'proposal' => 'required|mimes:jpeg,jpg,png,gif,mkv,mp4|required|max:2048'
         ]);
         $item = new Itempackage();
         $item->name = $request->name;
@@ -108,7 +109,9 @@ class ItemController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required|min:40',
+            'description' => 'required|min:50',
+            'media_sample' => 'mimes:jpeg,jpg,png,gif,mkv,mp4|max:2048',
+            'proposal' => 'mimes:jpeg,jpg,png,gif,mkv,mp4|max:2048'
         ]);
         $item = Itempackage::findOrFail($id);
         $item->name = $request->name;
@@ -124,12 +127,7 @@ class ItemController extends Controller
             if ($item->media_sample){
                 $old_foto = $item->media_sample;
                 $filepath = public_path() . '/backend/template/assets/images/item/' . $item->media_sample;
-                try {
                     File::delete($filepath);
-                }
-                catch (FileNotFoundException $e){
-                    //File sudah dihapus atau tidak ada
-                }
             }
             $item->media_sample = $filename;
         }
@@ -143,12 +141,7 @@ class ItemController extends Controller
             if ($item->proposal){
                 $old_foto = $item->proposal;
                 $filepath = public_path() . '/backend/template/assets/images/item/' . $item->proposal;
-                try {
                     File::delete($filepath);
-                }
-                catch (FileNotFoundException $e){
-                    //File sudah dihapus atau tidak ada
-                }
             }
             $item->proposal = $filename;
         }
@@ -175,27 +168,18 @@ class ItemController extends Controller
         //Hapus Media_Sample file
         if ($item->media_sample){
             $old_foto = $item->media_sample;
-            $filepath = public_path() . '/backend/template/assets/images/item' . $item->media_sample;
-            try {
+            $filepath = public_path() . '/backend/template/assets/images/item/' . $item->media_sample;
                 File::delete($filepath);
-            }
-            catch (FileNotFoundException $e){
-                //File sudah dihapus/tidak ada
-            }
         }
         //Hapus Proposal file
         if ($item->proposal){
             $old_foto = $item->proposal;
-            $filepath = public_path() . '/backend/template/assets/images/item' . $item->proposal;
-            try {
+            $filepath = public_path() . '/backend/template/assets/images/item/' . $item->proposal;
                 File::delete($filepath);
-            }
-            catch (FileNotFoundException $e){
-                //File sudah dihapus/tidak ada
-            }
         }
         $item->delete();
 
         return redirect()->route('item.index')->with(['danger' => 'Item: <strong>' . $item->name . '</strong> has been Removed']);
+        return redirect()->route('item.index')->with(['success' => 'Item: <strong>' . $item->name . '</strong> has been Edited']);
     }
 }

@@ -100,11 +100,7 @@ class PromoController extends Controller
             }
         }
 
-        Session::flash('flash_notification', [
-            'level' => 'success',
-            'message' => 'a New Promo has been Added'
-        ]);
-        return redirect()->route('promo.index');
+        return redirect()->route('promo.index')->with(['success' => 'Promo: <strong>' . $promo->name . '</strong> has been Added']);
     }
 
     /**
@@ -187,12 +183,7 @@ class PromoController extends Controller
             if ($promo->media){
                 $old_foto = $promo->media;
                 $filepath = public_path() . '/backend/template/assets/images/promo/'  . $promo->media;
-                try {
                     File::delete($filepath);
-                }
-                catch (FileNotFoundException $e){
-                    //File sudah dihapus atau tidak ada
-                }
             }
             $promo->media = $filename;
         }
@@ -232,11 +223,7 @@ class PromoController extends Controller
                 $listTool->save();
             }
         }
-        Session::flash('flash_notification', [
-            'level' => 'success',
-            'message' => 'a New Promo has been Added'
-        ]);
-        return redirect()->route('promo.index');
+        return redirect()->route('promo.index')->with(['success' => 'Promo: <strong>' . $promo->name . '</strong> has been Edited']);
     }
 
     /**
@@ -252,19 +239,10 @@ class PromoController extends Controller
         if ($promo->media){
             $old_foto = $promo->media;
             $filepath = public_path() . '/backend/template/assets/images/promo/' . $promo->media;
-            try {
                 File::delete($filepath);
-            }
-            catch (FileNotFoundException $e){
-                //File sudah dihapus/tidak ada
-            }
         }
         $promo->delete();
         $list_tools = DB::table('list_tools')->where('promo_id',$id)->delete();
-        Session::flash('flash_notification', [
-            'level' => 'danger',
-            'message' => 'the Promo that you choosen has been Removed'
-        ]);
-        return redirect()->route('promo.index');
+        return redirect()->route('promo.index')->with(['danger' => 'Promo: <strong>' . $promo->name . '</strong> has been Removed']);
     }
 }

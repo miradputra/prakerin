@@ -28,7 +28,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h2 class="m-0 text-dark">Item Data</h2>
+                        <h2 class="m-0 text-dark">Promo Data</h2>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,7 +40,24 @@
                         <div class="card" style="padding:10px">
                                 <div class="card-header">Info Data</div>
                                 <a href="{{ route('promo.create') }}" class="btn btn-primary btn-round btn-md float-right">Create Data</a>
-                                <br><br>
+                                <br>
+                                <br>
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {!! session('success') !!}
+                                    </div>
+                                @endif
+
+                                 @if (session('warning'))
+                                    <div class="alert alert-warning">
+                                        {!! session('success') !!}
+                                    </div>
+                                @endif
+                                @if (session('danger'))
+                                    <div class="alert alert-danger">
+                                        {!! session('danger') !!}
+                                    </div>
+                                @endif
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                         <thead>

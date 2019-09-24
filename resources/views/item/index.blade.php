@@ -40,7 +40,25 @@
                         <div class="card" style="padding:10px">
                         <div class="card-header">Info Data</div>
                             <a href="{{ route('item.create') }}" class="btn btn-primary btn-round btn-md float-right">Create Data</a>
-                            <br><br>
+                            <br>
+                            <br>
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {!! session('success') !!}
+                                </div>
+                            @endif
+
+                            @if (session('warning'))
+                                <div class="alert alert-warning">
+                                    {!! session('success') !!}
+                                </div>
+                            @endif
+
+                            @if (session('danger'))
+                                <div class="alert alert-danger">
+                                    {!! session('danger') !!}
+                                </div>
+                            @endif
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">

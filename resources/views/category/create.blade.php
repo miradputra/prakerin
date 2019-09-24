@@ -21,6 +21,14 @@
         $("button").save();
     });
     });
+        //SUBMIT BUTTON DISABLE IF INPUTING
+        var enableSubmit = function(ele) {
+    $(ele).removeAttr("disabled");
+    }
+    $('form').submit(function(){
+        $('.saveBtn').attr('disabled', true);
+    });
+
 </script>
 @endsection
 
@@ -48,7 +56,7 @@
                                 <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="">Category</label>
+                                    <h6>Category</h6>
                                     <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" required>
                                     {{-- Error Notification --}}
                                     @if ($errors->has('name'))
@@ -59,7 +67,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label for="">Description</label>
+                                    <h6>Description</h6>
                                     <textarea class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="editor1" required></textarea>
                                     {{-- Error Notification --}}
                                     @if ($errors->has('description'))
@@ -69,28 +77,34 @@
                                     @endif
                                 </div>
                                 <br>
-                                <label>Banner</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                <h6>Baner</h6>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input {{ $errors->has('baner') ? ' is-invalid' : '' }}" name="baner" id="validatedCustomFile" required>
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                        </div>
                                     </div>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input {{ $errors->has('baner') ? ' is-invalid' : '' }}" name="baner" id="validatedCustomFile" required>
-                                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                                        {{-- Error Notification --}}
-                                        @if ($errors->has('baner'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('baner') }}</strong>
-                                            </span>
-                                        @endif
+                                    <span>Please upload a valid image file. Size of image should not be more than 2MB.</span>
+                                    {{-- Error Notification --}}
+                                    @if ($errors->has('baner'))
+                                    <div class="alert alert-danger">
+                                        <strong>Whoops!</strong> There were some problems with your input.
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }} Max Size Upload is 2048px.</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
+                                    @endif
                                 </div>
-                                    <br><br>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-info btn-rounded btn-outline" data-qt-block="body" id="save">Simpan Data</button>
-                                        <button type="submit" class="btn btn-info btn-rounded btn-outline" data-qt-block="body">Kembali <a href="{{route('category.index')}}"></a> </button>
-
-                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                                <br><br>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-rounded btn-outline" data-qt-block="body" id="save">Simpan Data</button>
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
                                  </div>
                                 </form>
                             </div>

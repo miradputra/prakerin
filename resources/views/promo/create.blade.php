@@ -130,6 +130,14 @@
         $('[name=ppn]').val(ppnTotal);
         $('[name=grand_total]').val(grandTotal);
     }
+    //SUBMIT BUTTON DISABLE IF INPUTING
+    var enableSubmit = function(ele) {
+    $(ele).removeAttr("disabled");
+    }
+
+    $('form').submit(function(){
+        $('.saveBtn').attr('disabled', true);
+    });
 </script>
 @endsection
 
@@ -223,21 +231,29 @@
                                         @endif
                                     </div>
                                     <br>
-                                    <label>Media</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    <h6>Media</h6>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input {{ $errors->has('media') ? ' is-invalid' : '' }}" name="media" id="validatedCustomFile" required>
+                                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                            </div>
                                         </div>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input {{ $errors->has('media') ? ' is-invalid' : '' }}" name="media" id="validatedCustomFile" required>
-                                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                                            {{-- Error Notification --}}
-                                            @if ($errors->has('media'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('media') }}</strong>
-                                                </span>
-                                            @endif
+                                        <span>Please upload a valid image file. Size of image should not be more than 2MB.</span>
+                                        {{-- Error Notification --}}
+                                        @if ($errors->has('media'))
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your input.
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }} Max Size Upload is 2048px.</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
+                                        @endif
                                     </div>
                                     <br>
                                     <div class="col-md-11">

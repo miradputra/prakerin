@@ -9,11 +9,12 @@
                                 $img = asset('/backend/template/assets/images/user/' . Auth::user()->avatar);
                             }
                             else{
-                                $img = asset('/backend/template/assets/images/user/admin.jpeg' );
+                                $img = asset('/backend/template/assets/images/user/admin1.png');
                             }
                             @endphp
                         </div>
                     <div class="image" ><img src="{{ $img }}" alt=""></div>
+
                         <div class="detail">
                         <h4>{{Auth::user()->name}}</h4>
                             <p class="m-b-0"></p>
@@ -22,7 +23,7 @@
                             <a href="contact.html" title="Contact List"><i class="zmdi zmdi-account-box-phone"></i></a>
                             <div class="row">
                                 <div class="col-4 p-r-0">
-                                    <h6 class="m-b-5">852</h6>
+                                    <h6 class="m-b-5">100+</h6>
                                     <small>Sales</small>
                                 </div>
                                 <div class="col-4 p-l-0 p-r-0">
@@ -47,7 +48,7 @@
                         <li><a href="promo">Promo</a></li>
                     </ul>
                 </li>
-                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>
+                {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>
                     <ul class="ml-menu">
                         <li><a href="mail-inbox.html">Inbox</a></li>
                         <li><a href="chat.html">Chat</a></li>
@@ -153,6 +154,6 @@
                 </li>
                 <li><a href="doc.html"><i class="zmdi zmdi-circle-o text-warning"></i><span>Documentation</span></a></li>
                 <li><a href="faqs.html"><i class="zmdi zmdi-circle-o text-success"></i><span>Faqs</span></a></li>
-            </ul>
+            </ul> --}}
         </div>
     </aside>

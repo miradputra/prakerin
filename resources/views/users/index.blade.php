@@ -13,11 +13,12 @@
                              <div class="card">
                                 <div class="col-md10">
                                     <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Tambah Baru</a>
+                                    <br>
                                     @if (session('success'))
-                                    <div class="btn btn-info btn-sm">
-                                        {!! session('success') !!}
-                                    </div>
-                                @endif
+                                        <div class="alert alert-success">
+                                            {!! session('success') !!}
+                                        </div>
+                                    @endif
                                 <div class="card-body">
                                     <table id="bs4-table" class="table table-striped table-bordered" style="width:100%"x>
                                     <thead>

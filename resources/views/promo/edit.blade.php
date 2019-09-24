@@ -133,6 +133,18 @@
     $(document).ready(function(){
         $('.optgroup').change();
     })
+    $(document).ready(function(){
+        $('.optgroup').change();
+    })
+
+    //SUBMIT BUTTON DISABLE IF INPUTING
+    var enableSubmit = function(ele) {
+    $(ele).removeAttr("disabled");
+    }
+
+    $('form').submit(function(){
+        $('.saveBtn').attr('disabled', true);
+    });
 </script>
 @endsection
 
@@ -227,26 +239,38 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <label>Media</label>
-                                    <div>
-                                        <img src="{{ asset('/backend/template/assest/images/promo/'. $promo->media . '') }}"
-                                        style="width:115px; height:80px;" alt="foto">
+                                    <div class="form-group">
+                                        <h6>Media</h6><br>
+                                        @if (isset($promo) && $promo->media)
+                                            <p>
+                                                <img src="{{ asset('backend/template/assets/images/promo/' . $promo->media . '') }}"
+                                                    style="margin-top:15px; margin-bottom:15px; width:100px; height:100px;" alt="media"
+                                                    class="card-img img-fluid mb-4">
+                                            </p>
+                                        @endif
                                     </div>
-                                    <br>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input {{ $errors->has('media') ? ' is-invalid' : '' }}" name="media" id="validatedCustomFile" value="{{ $promo->media }}">
+                                                <label class="custom-file-label" for="validatedCustomFile">{{ $promo->media }}</label>
+                                            </div>
                                         </div>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input {{ $errors->has('media') ? ' is-invalid' : '' }}" name="media" value="{{ $promo->media }}" id="validatedCustomFile" required>
-                                            <label class="custom-file-label" for="validatedCustomFile">{{ $promo->media }}</label>
-                                            {{-- Error Notification --}}
-                                            @if ($errors->has('media'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('media') }}</strong>
-                                                </span>
-                                            @endif
+                                        <span>Please upload a valid image file. Size of image should not be more than 2MB.</span>
+                                        {{-- Error Notification --}}
+                                        @if ($errors->has('media'))
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your input.
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }} Max Size Upload is 2048px.</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
